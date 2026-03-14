@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Local Shop</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+.menu{
+background:black;
+padding:12px;
+text-align:center;
+}
+
+.menu a{
+color:white;
+margin:0 15px;
+text-decoration:none;
+font-size:18px;
+}
+
+body{
+margin:0;
+font-family:Arial;
+background:#f5f5f5;
+}
+
+/* HERO */
+
+.hero{
+height:100vh;
+background:url('https://i.ibb.co/dsQZJFcd/jacek-dylag-jo8-C9bt3uo8-unsplash.jpg') center/cover;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+}
+
+.hero h1{
+font-size:45px;
+margin:0;
+}
+
+.hero p{
+font-size:20px;
+}
+
+.shop-btn{
+background:#ff6a00;
+color:white;
+padding:15px 30px;
+border:none;
+font-size:18px;
+cursor:pointer;
+margin-top:20px;
+border-radius:5px;
+}
+
+/* PRODUCTS */
+
+.products{
+padding:40px 20px;
+}
+
+.carousel{
+display:flex;
+overflow-x:auto;
+gap:20px;
+}
+
+.product{
+background:white;
+padding:15px;
+border-radius:10px;
+min-width:220px;
+text-align:center;
+box-shadow:0 3px 8px rgba(0,0,0,0.2);
+}
+
+.product img{
+width:100%;
+border-radius:10px;
+}
+
+.product button{
+margin-top:10px;
+padding:10px;
+background:#28a745;
+border:none;
+color:white;
+cursor:pointer;
+}
+
+/* CART */
+
+.cart-icon{
+position:fixed;
+right:20px;
+top:20px;
+background:black;
+color:white;
+padding:12px;
+border-radius:50%;
+cursor:pointer;
+}
+
+.cart-count{
+background:red;
+padding:3px 7px;
+border-radius:50%;
+font-size:12px;
+margin-left:5px;
+}
+
+.cart{
+position:fixed;
+right:-350px;
+top:0;
+width:300px;
+height:100%;
+background:white;
+box-shadow:-2px 0 10px rgba(0,0,0,0.3);
+padding:20px;
+transition:0.3s;
+overflow:auto;
+}
+
+.cart.active{
+right:0;
+}
+
+.cart input{
+width:100%;
+padding:10px;
+margin:5px 0;
+}
+
+.cart button{
+width:100%;
+padding:10px;
+background:#ff6a00;
+border:none;
+color:white;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px;
+border-radius:50%;
+font-size:22px;
+}
+
+</style>
+</head>
+
+<body>
+  <nav class="menu">
+
+<a href="#hero">Home</a>
+
+<a href="#products">Products</a>
+
+<a href="#about">About</a>
+
+<a href="#contact">Contact</a>
+
+<a href="#order">Order</a>
+
+</nav>
+<section id="order" style="padding:40px">
+
+<h2>Place Your Order</h2>
+
+<input type="text" placeholder="Your Name">
+
+<input type="tel" placeholder="Phone Number">
+
+<textarea placeholder="Product Name"></textarea>
+
+<button>Send Order</button>
+
+</section>
+<section id="contact" style="padding:40px">
+
+<h2>Contact Us</h2>
+
+<p>Email: honeyrajput7705@gmail.com</p>
+
+<a href="https://wa.me/9414176039">
+
+Chat on WhatsApp
+
+</a>
+
+</section>
+
+<!-- CART ICON -->
+
+<div class="cart-icon" onclick="toggleCart()">
+<i class="fa fa-shopping-cart"></i>
+<span class="cart-count" id="count">0</span>
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div>
+
+<h1>The Local Shop</h1>
+
+<p>Fresh Finds, Best Prices</p>
+
+<button class="shop-btn" onclick="scrollToProducts()">Shop Now</button>
+
+</div>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<section class="products" id="products">
+
+<h2>Products</h2>
+
+<div class="carousel">
+  <div class="product">
+<img src="https://i.ibb.co/6RKVWBMc/forum-low-cl-core-whitecore-black-white-67125747e32ba.webp">
+<h3>Adidas Forum Low</h3>
+<button onclick="addToCart('Adidas Forum Low')">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://i.ibb.co/spMP36Pv/19968884-99d7-4f3a-8ec7-deb17868962b-size3840-crop-Center.jpg">
+<h3>Adidas Sneakers</h3>
+<button onclick="addToCart('Adidas Sneakers')">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://i.ibb.co/wrZPxdWt/adidas-forum-low.jpg">
+<h3>Forum Low Shoes</h3>
+<button onclick="addToCart('Forum Low Shoes')">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://i.ibb.co/BV70DWB8/823984-full-product.jpg">
+<h3>White Sneakers</h3>
+<button onclick="addToCart('White Sneakers')">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://i.ibb.co/W7P3cc4/GW2007-7-FOOTWEAR-Photography-Back-Lateral-Top-View-white.jpg">
+<h3>Adidas White Shoes</h3>
+<button onclick="addToCart('Adidas White Shoes')">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://i.ibb.co/rRjbwbCK/BEST-WHITE-SNEAKERS-SUB-2048px-3916.jpg">
+<h3>Premium White Sneakers</h3>
+<button onclick="addToCart('Premium White Sneakers')">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://i.ibb.co/0ySbTmXB/Imcolus-560x560.jpg">
+<h3>Imcolus Sneakers</h3>
+<button onclick="addToCart('Imcolus Sneakers')">Add to Cart</button>
+</div>
+
+<div class="product">
+
+<img src="https://i.ibb.co/9H0QVYJQ/61qw-HPDE2-OL-AC-UY1000.jpg">
+
+<h3>Running Shoes</h3>
+
+<button onclick="addToCart('Running Shoes')">Add to Cart</button>
+
+</div>
+
+<div class="product">
+
+<img src="https://i.ibb.co/RkCDQ4N1/614ai-M56si-L.jpg">
+
+<h3>Sports Shoes</h3>
+
+<button onclick="addToCart('Sports Shoes')">Add to Cart</button>
+
+</div>
+
+<div class="product">
+
+<img src="https://i.ibb.co/PL30Twy/Drop-Step-Low-2-0-Shoes-Grey-KJ1107-01-00-standard.jpg">
+
+<h3>Grey Shoes</h3>
+
+<button onclick="addToCart('Grey Shoes')">Add to Cart</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="about" style="padding:40px">
+
+<h2>About Our Shop</h2>
+
+<p>
+
+The Local Shop provides fresh finds and best prices.
+We sell quality sneakers and fashion products.
+
+Owner Email: honeyrajput7705@gmail.com
+
+</p>
+
+</section>
+
+
+<!-- CART -->
+
+<div class="cart" id="cart">
+
+<h2>Your Cart</h2>
+
+<ul id="cart-items"></ul>
+
+<input type="text" id="name" placeholder="Customer Name">
+
+<input type="tel" id="phone" placeholder="Phone Number">
+
+<button onclick="sendOrder()">Send Order</button>
+
+</div>
+
+<!-- WHATSAPP -->
+
+<a class="whatsapp" href="https://wa.me/9414176039">
+
+<i class="fab fa-whatsapp"></i>
+
+</a>
+
+<!-- EMAILJS -->
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+
+emailjs.init("YOUR_PUBLIC_KEY");
+
+let cart=[];
+
+function scrollToProducts(){
+
+document.getElementById("products").scrollIntoView({behavior:'smooth'});
+
+}
+
+function toggleCart(){
+
+document.getElementById("cart").classList.toggle("active");
+
+}
+
+function addToCart(item){
+
+cart.push(item);
+
+updateCart();
+
+}
+
+function updateCart(){
+
+document.getElementById("count").innerText=cart.length;
+
+let list=document.getElementById("cart-items");
+
+list.innerHTML="";
+
+cart.forEach(i=>{
+
+let li=document.createElement("li");
+
+li.innerText=i;
+
+list.appendChild(li);
+
+});
+
+}
+
+function sendOrder(){
+
+let name=document.getElementById("name").value;
+
+let phone=document.getElementById("phone").value;
+
+let items=cart.join(", ");
+
+emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",{
+
+customer_name:name,
+
+phone_number:phone,
+
+items:items
+
+});
+
+alert("Order Sent!");
+
+}
+
+</script>
+
+</body>
+</html>
